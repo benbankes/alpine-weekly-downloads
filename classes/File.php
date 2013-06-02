@@ -8,14 +8,9 @@
 			if($this->path && is_file($this->path)) {
 				return filemtime($this->path);
 			}
-			return false;
 		}
 		
 		public static function getFile($filename, $path) {
-			if(!is_file($path . '/' . $filename)) {
-				return;
-			}
-			
 			$file = new File();
 			$file->name = $filename;
 			$file->path = $path . '/' . $filename;

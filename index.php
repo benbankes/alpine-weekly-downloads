@@ -348,34 +348,32 @@
 					.append(this.fileLink(file.name));
 				
 				this.getModifiedTimeElement = function(timestamp) {
-					var now = currentDate;
-					var modDate = new Date(timestamp);
-					var yr = modDate.getFullYear();
-					var mo = modDate.getMonth() + 1;
-					var day = modDate.getDate();
-					var monthString = monthAbbreviation[mo-1];
-					//var dayOfWeekString = dayOfWeekAbbreviation[modDate.getDay()];
-					
-					if(yr == now.getFullYear() && mo == now.getMonth() + 1 && day == now.getDate()) {
-						var displayDate = timeString;
-					} else if (yr != now.getFullYear()) {
-						var displayDate = String(mo) + '/' + String(day) + '/' + String(yr);
-					} else if (timestamp > now.getTime() - 7*24*60*60*1000) {
-						var displayDate = monthString + ' ' + day;
-						// var displayDate = dayOfWeekString + ', ' + monthString + ' ' + day;
-					} else {
-						var displayDate = monthString + ' ' + day;
+					if(timestamp) {
+						var now = currentDate;
+						var modDate = new Date(timestamp);
+						var yr = modDate.getFullYear();
+						var mo = modDate.getMonth() + 1;
+						var day = modDate.getDate();
+						var monthString = monthAbbreviation[mo-1];
+
+						if(yr == now.getFullYear() && mo == now.getMonth() + 1 && day == now.getDate()) {
+							var displayDate = 'Today';
+						} else if (yr != now.getFullYear()) {
+							var displayDate = String(mo) + '/' + String(day) + '/' + String(yr);
+						} else if (timestamp > now.getTime() - 7*24*60*60*1000) {
+							var displayDate = monthString + ' ' + day;
+						} else {
+							var displayDate = monthString + ' ' + day;
+						}
+
+						// If timestamp is after last Sunday
+						if(timestamp < getLastSundayTimestamp(now.getTime())
+							&& hideLastWeek ) {
+							self.row.hide();
+						}
+						return new $('<span>').text(displayDate);
 					}
-					
-					// If timestamp is after last Sunday
-					if(timestamp < getLastSundayTimestamp(now.getTime())
-						&& hideLastWeek ) {
-						self.row.hide();
-					}
-					
-					var modifiedTimeElement = new $('<span>').text(displayDate);
-					
-					return modifiedTimeElement;
+					return new $('<span>').text('Not found');
 				}
 				
 				this.modifiedTimeColumn = new $('<td>').appendTo(this.row)
