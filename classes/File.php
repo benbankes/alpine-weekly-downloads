@@ -25,7 +25,7 @@
 		
 		public static function getStandardFilesList() {
 			return array(
-				'countdown.wmv',
+				'countdown.mp4',
 				'songs.zip',
 				'announcements.zip',
 				'slides.zip',
