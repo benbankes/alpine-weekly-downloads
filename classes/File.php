@@ -26,7 +26,7 @@
 		public static function getStandardFilesList() {
 			return array(
 				'starter.osz',
-				'countdown.wmv',
+				'countdown.mp4',
 				'songs.zip',
 				'announcements.zip',
 				'slides.zip',

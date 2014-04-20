@@ -189,7 +189,10 @@
 				this.addFileTimes = function(files, hideLastWeek) {
 					for(i in files) {
 						var file = files[i];
-						self.addFileTime(file, hideLastWeek);
+						
+						if (file) {
+							self.addFileTime(file, hideLastWeek);
+						}
 					}
 				}
 				
@@ -357,7 +360,7 @@
 					//var dayOfWeekString = dayOfWeekAbbreviation[modDate.getDay()];
 					
 					if(yr == now.getFullYear() && mo == now.getMonth() + 1 && day == now.getDate()) {
-						var displayDate = timeString;
+						var displayDate = 'Today';
 					} else if (yr != now.getFullYear()) {
 						var displayDate = String(mo) + '/' + String(day) + '/' + String(yr);
 					} else if (timestamp > now.getTime() - 7*24*60*60*1000) {
