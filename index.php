@@ -439,7 +439,6 @@
 						 from go.alpinechurch.org</li>
 					<li>"Standard Sermon Files" is a static list of commonly used media team files</li>
 					<li>"Other Files" displays files modified since and including the past Sunday</li>
-					<li>The starter file contains the countdown, songs, announcements, and slides</li>
 					<li>MP4 files can be downloaded by right clicking and choosing "save link as"</li>
 				</ul>
 				<p id="feedback">To report a bug or request a feature, email Ben (bbankes@gmail.com)</p>
