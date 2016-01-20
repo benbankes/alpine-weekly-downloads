@@ -189,7 +189,10 @@
 				this.addFileTimes = function(files, hideLastWeek) {
 					for(i in files) {
 						var file = files[i];
-						self.addFileTime(file, hideLastWeek);
+						
+						if (file) {
+							self.addFileTime(file, hideLastWeek);
+						}
 					}
 				}
 				
@@ -352,6 +355,7 @@
 					.append(this.fileLink(file.name));
 				
 				this.getModifiedTimeElement = function(timestamp) {
+<<<<<<< HEAD
 					if(timestamp) {
 						var now = currentDate;
 						var modDate = new Date(timestamp);
@@ -376,6 +380,31 @@
 							self.row.hide();
 						}
 						return new $('<span>').text(displayDate);
+=======
+					var now = currentDate;
+					var modDate = new Date(timestamp);
+					var yr = modDate.getFullYear();
+					var mo = modDate.getMonth() + 1;
+					var day = modDate.getDate();
+					var monthString = monthAbbreviation[mo-1];
+					//var dayOfWeekString = dayOfWeekAbbreviation[modDate.getDay()];
+					
+					if(yr == now.getFullYear() && mo == now.getMonth() + 1 && day == now.getDate()) {
+						var displayDate = 'Today';
+					} else if (yr != now.getFullYear()) {
+						var displayDate = String(mo) + '/' + String(day) + '/' + String(yr);
+					} else if (timestamp > now.getTime() - 7*24*60*60*1000) {
+						var displayDate = monthString + ' ' + day;
+						// var displayDate = dayOfWeekString + ', ' + monthString + ' ' + day;
+					} else {
+						var displayDate = monthString + ' ' + day;
+					}
+					
+					// If timestamp is after last Sunday
+					if(timestamp < getLastSundayTimestamp(now.getTime())
+						&& hideLastWeek ) {
+						self.row.hide();
+>>>>>>> 5c631939cf937cae00918525e28bbc45451f1ec7
 					}
 					return new $('<span>').text('Not found');
 				}
@@ -438,7 +467,6 @@
 						 from go.alpinechurch.org</li>
 					<li>"Standard Sermon Files" is a static list of commonly used media team files</li>
 					<li>"Other Files" displays files modified since and including the past Sunday</li>
-					<li>The starter file contains the countdown, songs, announcements, and slides</li>
 					<li>MP4 files can be downloaded by right clicking and choosing "save link as"</li>
 				</ul>
 				<p id="feedback">To report a bug or request a feature, email Ben (bbankes@gmail.com)</p>
