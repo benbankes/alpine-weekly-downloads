@@ -331,15 +331,19 @@
 						return filename;
 					}
 				}
-				
+				//TODO remove pointer finger from non-existent files
 				
 				this.downloadIcon = function() {
-					return new $('<span>').addClass('ui-icon ui-icon-circle-arrow-s')
-					.css({
-						'display': 'inline-block',
-						'vertical-align': 'middle',
-						'margin-right': '2%'
-					});
+					var iconSpot = new $('<span>').addClass('ui-icon ui-icon-circle-arrow-s')
+						.css({
+							'display': 'inline-block',
+							'vertical-align': 'middle',
+							'margin-right': '2%'
+						});
+					if(!file.modified) {
+						iconSpot.css({'background': 'none'});
+					}
+					return iconSpot;
 				}
 				
 				this.filenameColumn = new $('<td>').appendTo(this.row)
